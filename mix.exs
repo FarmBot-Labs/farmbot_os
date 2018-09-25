@@ -58,13 +58,22 @@ defmodule Farmbot.Mixfile do
     ]
   end
 
-  def application do
+  def application("host") do
+    [
+      mod: {Farmbot, []},
+      extra_applications: [:logger, :eex, :ssl, :inets, :runtime_tools]
+    ]
+  end
+
+  def application(_target) do
     [
       mod: {Farmbot, []},
       extra_applications: [:logger, :eex, :ssl, :inets, :runtime_tools],
       included_applications: [:nerves_hub]
     ]
   end
+
+  def application(), do: application(@target)
 
   defp docs do
     [
@@ -125,7 +134,7 @@ defmodule Farmbot.Mixfile do
       {:sqlite_ecto2, "~> 2.2"},
       {:logger_backend_sqlite, "~> 2.1"},
       {:nerves_runtime, github: "nerves-project/nerves_runtime", branch: "put-uboot", override: true},
-      {:nerves_hub_cli, path: "/home/connor/oss/elixir/nerves_hub/nerves_hub_cli", runtime: false, override: true}
+      {:nerves_hub_cli, "~> 0.2.0", runtime: false}
     ]
   end
 
@@ -144,6 +153,7 @@ defmodule Farmbot.Mixfile do
     system(target) ++
       [
         {:nerves_runtime, "~> 0.8"},
+        {:nerves_hub, github: "nerves-hub/nerves_hub", branch: "add-conditional-update-handler", override: true},
         {:nerves_firmware, "~> 0.4"},
         {:nerves_firmware_ssh, "~> 0.3"},
         {:nerves_init_gadget, "~> 0.5", only: :dev},
@@ -153,7 +163,6 @@ defmodule Farmbot.Mixfile do
         {:dhcp_server, "~> 0.6"},
         {:elixir_ale, "~> 1.1"},
         {:mdns, "~> 1.0"},
-        {:nerves_hub, path: "/home/connor/oss/elixir/nerves_hub/nerves_hub", override: true}
       ]
   end
 
