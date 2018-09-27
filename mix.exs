@@ -134,7 +134,7 @@ defmodule Farmbot.Mixfile do
       {:bbmustache, "~> 1.5"},
       {:apex, "~> 1.2"},
       {:logger_backend_sqlite, "~> 2.0"},
-      {:nerves_hub_cli, "~> 0.2.0", runtime: false}
+      {:nerves_hub_cli, github: "nerves-hub/nerves_hub_cli", runtime: false}
     ]
   end
 
