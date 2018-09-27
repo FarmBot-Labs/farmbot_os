@@ -134,7 +134,7 @@ defmodule Farmbot.Mixfile do
       {:sqlite_ecto2, "~> 2.2"},
       {:logger_backend_sqlite, "~> 2.1"},
       {:nerves_runtime, github: "nerves-project/nerves_runtime", branch: "put-uboot", override: true},
-      {:nerves_hub_cli, github: "nerves-hub/nerves_hub_cli", runtime: false}
+      {:nerves_hub_cli, github: "nerves-hub/nerves_hub_cli", branch: "feature/force", runtime: false, override: true}
     ]
   end
 
