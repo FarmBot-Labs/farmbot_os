@@ -11,7 +11,7 @@ install_elixir: &install_elixir
       unzip -d /usr/local/elixir Precompiled.zip
       echo 'export PATH=/usr/local/elixir/bin:$PATH' >> $BASH_ENV
 
-install_hex_archives: &install_hex_archives
+install_hex_rebar: &install_hex_rebar
   run:
     name: Install archives
     command: |
@@ -19,13 +19,6 @@ install_hex_archives: &install_hex_archives
       mix local.hex --force
       mix local.rebar --force
       mix archive.install hex nerves_bootstrap "~> 1.2" --force
-
-fetch_and_compile_deps: &fetch_and_compile_deps
-  run:
-    name: Fetch and compile Elixir dependencies
-    command: |
-      mix deps.get
-      mix compile
 
 install_arduino: &install_arduino
   run:
