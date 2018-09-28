@@ -88,9 +88,11 @@ jobs:
           keys:
             - v5-fbos-rpi3-prod-dependency-cache-{{ checksum "mix.lock.rpi3" }}
             - v5-fbos-host-test-dependency-cache-{{ checksum "mix.lock.host" }}
+            - v5-fbos-arduino-dependency-cache-{{ checksum ".circleci/setup-arduino.sh" }}
       - <<: *install_elixir
       - <<: *install_hex_rebar
       - <<: *install_nerves_bootstrap
+      - <<: *install_arduino
       - run:
           name: Build Farmbot OS Firmware
           command: |
@@ -109,6 +111,10 @@ jobs:
           paths:
             - _build/rpi3/
             - deps/rpi3
+      - save_cache:
+          key: v5-fbos-arduino-dependency-cache-{{ checksum ".circleci/setup-arduino.sh" }}
+          paths:
+            - ~/arduino-1.8.5
       - store_artifacts:
           path: /nerves/deploy/system/artifacts
           destination: images
