@@ -235,8 +235,19 @@ workflows:
     jobs:
       - rpi3_firmware:
           context: org-global
+          filters:
+            branches:
+              ignore:
+                - beta
+                - master
   deploy_stable_prod:
     jobs:
+      - rpi3_firmware:
+          context: farmbot-production
+          filters:
+            branches:
+              only:
+                - master
       - deploy_stable_firmware_to_nerves_hub:
           context: farmbot-production
           filters:
