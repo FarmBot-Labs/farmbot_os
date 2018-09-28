@@ -234,7 +234,7 @@ workflows:
   firmware:
     jobs:
       - rpi3_firmware:
-        context: org-global
+          context: org-global
   deploy_stable_prod:
     jobs:
       - deploy_stable_firmware_to_nerves_hub:
