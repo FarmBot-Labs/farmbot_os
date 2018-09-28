@@ -134,9 +134,9 @@ defmodule Farmbot.Mixfile do
       {:bbmustache, "~> 1.5"},
       {:apex, "~> 1.2"},
       {:logger_backend_sqlite, "~> 2.0"},
-      {:nerves_hub_cli,
-       path: "/home/connor/oss/elixir/nerves_hub/nerves_hub_cli", runtime: false, override: true}
-      # {:nerves_hub_cli, github: "nerves-hub/nerves_hub_cli", branch: "feature/force", runtime: false, override: true}
+      # {:nerves_hub_cli,
+      #  path: "/home/connor/oss/elixir/nerves_hub/nerves_hub_cli", runtime: false, override: true}
+      {:nerves_hub_cli, github: "connorrigby/nerves_hub_cli", branch: "bugfix/env-vars", runtime: false, override: true}
     ]
   end
 
