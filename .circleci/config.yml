@@ -13,12 +13,16 @@ install_elixir: &install_elixir
 
 install_hex_rebar: &install_hex_rebar
   run:
-    name: Install archives
+    name: Install hex and rebar
     command: |
-      cd /tmp
       mix local.hex --force
       mix local.rebar --force
-      mix archive.install hex nerves_bootstrap "~> 1.2" --force
+
+install_nerves_bootstrap: &install_nerves_bootstrap
+  run:
+    name: Install nerves_bootstrap
+    command: |
+      mix archive.install hex nerves_bootstrap "~> 1.0" --force
 
 install_arduino: &install_arduino
   run:
