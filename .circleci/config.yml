@@ -49,16 +49,17 @@ jobs:
       MIX_ENV: test
       MIX_TARGET: host
       ELIXIR_VERSION: 1.7.3
-      SKIP_ARDUINO_BUILD: 1
     steps:
       - checkout
       - run: git submodule update --init --recursive
       - restore_cache:
           keys:
             - v5-fbos-host-test-dependency-cache-{{ checksum "mix.lock.host" }}
+            - v5-fbos-arduino-dependency-cache-{{ checksum ".circleci/setup-arduino.sh" }}
       - <<: *install_elixir
       - <<: *install_hex_rebar
       - <<: *install_nerves_bootstrap
+      - <<: *install_arduino
       - run:
           name: Test Farmbot OS
           command: |
@@ -70,6 +71,10 @@ jobs:
           paths:
             - _build/host
             - deps/host
+      - save_cache:
+          key: v5-fbos-arduino-dependency-cache-{{ checksum ".circleci/setup-arduino.sh" }}
+          paths:
+            - ~/arduino-1.8.5
   rpi3_firmware:
     <<: *defaults
     environment:
