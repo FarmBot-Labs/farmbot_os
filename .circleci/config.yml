@@ -80,9 +80,9 @@ jobs:
       - checkout
       - run: git submodule update --init --recursive
       - restore_cache:
-        keys:
-          - v5-fbos-rpi3-prod-dependency-cache-{{ checksum "mix.lock.rpi3" }}
-          - v5-fbos-host-test-dependency-cache-{{ checksum "mix.lock.host" }}
+          keys:
+            - v5-fbos-rpi3-prod-dependency-cache-{{ checksum "mix.lock.rpi3" }}
+            - v5-fbos-host-test-dependency-cache-{{ checksum "mix.lock.host" }}
       - <<: *install_elixir
       - <<: *install_hex_rebar
       - <<: *install_nerves_bootstrap
