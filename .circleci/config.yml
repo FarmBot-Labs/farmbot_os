@@ -87,11 +87,11 @@ jobs:
       - <<: *install_hex_rebar
       - <<: *install_nerves_bootstrap
       - run:
-        name: Build Farmbot OS Firmware
-        command: |
-          mix deps.get
-          mix firmware
-          mix nerves_hub.firmware sign --key ${NERVES_HUB_ORG}
+          name: Build Farmbot OS Firmware
+          command: |
+            mix deps.get
+            mix firmware
+            mix nerves_hub.firmware sign --key ${NERVES_HUB_ORG}
       - run:
           name: Create artifact dir
           command: mkdir -p /nerves/deploy/system/artifacts
