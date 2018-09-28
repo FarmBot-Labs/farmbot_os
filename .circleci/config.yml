@@ -81,6 +81,7 @@ jobs:
       MIX_ENV: prod
       MIX_TARGET: rpi3
       ELIXIR_VERSION: 1.7.3
+      NERVES_LOG_DISABLE_PROGRESS_BAR: "yes"
     steps:
       - checkout
       - run: git submodule update --init --recursive
@@ -98,7 +99,6 @@ jobs:
           command: |
             mix deps.get
             mix firmware
-            mix nerves_hub.firmware sign --key ${NERVES_HUB_ORG}
       - run:
           name: Create artifact dir
           command: mkdir -p /nerves/deploy/system/artifacts
